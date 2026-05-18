@@ -2,10 +2,141 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting...</title>
 </head>
 <body>
-    <p>to play the game <a href="https://codehs.com/sandbox/id/python-3-S0Nt7o/run">click here</a>.</p>
-    <p>i didnt know how to get an embed to work</p>
+    <link rel="stylesheet" href="https://pyscript.net" />
+<script defer src="https://pyscript.net"></script>
+
+<py-script>
+    ### Libraries
+
+import time
+import random
+
+### Vars
+
+items = []
+username = []
+level = 0
+gold = 15
+reincarnations = 0
+enemies = ["Tiny Slime", "Slime", "Baby Zombie", "Rabid Wolf", "Zombie", "Ghost", "Mummy", "Skeleton", "Skeleton Boss", "Titan", "Titan Boss"]
+enemiescosts = [0, 0, 1, 1, 2, 3, 4, 5, 8, 15, 25]
+enemiesgold = [15, 20, 30, 50, 65, 90, 155, 300, 1560, 4500]
+
+levelupcost = 15
+
+randomcivilianquotes = ["A civilian told you about a great deal on shoes.", "You tried talking to a civilian that ignored you.", "After talking to a civilian, they failed to steal 5 G$ from you.", "A civilian tried to sell you a bogus way to learn coding called 'AI'. You didn't like it because you're sane.", "Who actually reads this flavor text?"]
+
+print("\nWelcome to generic RPG game DX(^TM), be aware this game can be very, VERY grindy..")
+
+while True:
+    print(f"\nYou have {gold} G$ and are LV {level}.")
+    print("\nWhat will you do?")
+
+    if level >= 10:
+        choice = int(input("\n1) Go to village \n2) Go to forest and fight \n3) Go to The Alter"))
+    else:
+        choice = int(input("\n1) Go to village \n2) Go to forest and fight"))
+
+    if choice == 1:
+    
+
+        choice2 = int(input("\n1) Talk with Blacksmith \n2) Talk with Civilians"))
+
+        if choice2 == 1:
+            print(f"\nBlacksmith: I'll strike up a deal to bring you up a level for {levelupcost} G$.")
+
+            time.sleep(1)
+
+            blacksmithchoice = int(input(f"\nGo to LV {level + 1} for {levelupcost} G$? \n1) Yes\n2) No"))
+
+            if blacksmithchoice == 1:
+                if gold >= levelupcost:
+                    print("\nBlacksmith: Here you go.")
+
+                    time.sleep(1)
+                    level = level + 1
+                    gold -= levelupcost
+                    levelupcost *= 2
+
+                    print(f"\nYou went to LV {level}!")
+
+                    time.sleep(1)
+
+                    if level >= 10:
+                        print("\n The Alter has opened.")
+                        time.sleep(1)
+                else:
+                    print(f"\nYou have {gold} G$, not enough.")
+
+                    time.sleep(1)
+
+                    print(f"\nThe Blacksmith kicked you out of his workstation.")
+
+                    time.sleep(2)
+
+        elif choice2 == 2:
+            print(random.choice(randomcivilianquotes))
+    elif choice == 2:
+        enemy = random.choice(enemies)
+        enemyid = enemies.index(enemy)
+        enemylevel = enemiescosts[enemyid]
+        print((f"\nYou were ambushed by a LV {enemylevel} {enemy}!"))
+        time.sleep(1)
+        choice2 = int(input("\n1) Attack \n2) Run Away"))
+        
+        ### BATTLE!!!
+
+        if choice2 == 1:
+            if level > enemylevel:
+                gold += enemiesgold[enemyid] * (reincarnations + 1)
+
+                print(f"\nYou were victorious and got {enemiesgold[enemyid] * (reincarnations + 1)} G$!")
+                time.sleep(3)
+            else:
+                gold = gold - 5
+                flavortextrun = ["\nYou tripped and lost 5 G$!", "\nThe enemy and his friends JUMPED you and you lost 5 G$!"]
+
+                print(random.choice(flavortextrun))
+                time.sleep(3)
+                if gold < 0:
+                    gold += 20
+                    print("\n..But the enemies pittied you and gave you 20 G$.")
+                    time.sleep(2)
+    elif choice == 3:
+        if level >= 10:
+            print("\nThe Alter welcomes you..")
+            time.sleep(3)
+            print("\nREINCARNATE to reset but gain a multiplier on G$?")
+
+            reinchoice = int(input(f"\nChoose wisely.. \n1) Yes\n2) No"))
+
+            if reinchoice == 1:
+                level = 0
+                gold = 15
+                levelupcost = 15
+                reincarnations += 1
+                time.sleep(2)
+                print("\n..And so it has happened.")
+                time.sleep(2)
+                level = 0
+                gold = 15
+                levelupcost = 15
+                print(f"\nYou now have {reincarnations} Reincarnations, giving a {reincarnations + 1} multiplier to gold received from enemies..")
+                time.sleep(3)
+
+            
+            
+    elif choice == 93:
+        level = 9
+        print("Epic haxxer mode activaed..")
+        print("This was for testing reincarnations")
+
+
+
+
+</py-script>
+
 </body>
 </html>
